@@ -1,27 +1,15 @@
-import { http } from '../api/http.js';
+// src/services/userService.js
+export async function registerUser(data) {
+  const res = await fetch('https://taskly-2h0c.onrender.com/api/v1/users/', { // ← cambia la URL por la tuya
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
 
-/**
- * Register a new user in the system.
- *
- * Sends a POST request to the backend API (`/api/v1/users`)
- * with the provided username and password.
- *
- * @async
- * @function registerUser
- * @param {Object} params - User registration data.
- * @param {string} params.username - The username of the new user.
- * @param {string} params.password - The password of the new user.
- * @returns {Promise<Object>} The created user object returned by the API.
- * @throws {Error} If the API responds with an error status or message.
- *
- * @example
- * try {
- *   const user = await registerUser({ username: "alice", password: "secret" });
- *   console.log("User created:", user);
- * } catch (err) {
- *   console.error("Registration failed:", err.message);
- * }
- */
-export async function registerUser({ firstName, lastName, age, email, password, confirmPassword }) {
-  return http.post('/api/v1/users/', { firstName, lastName, age, email, password, confirmPassword });
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({}));
+    throw new Error(error.message || 'Error en el registro');
+  }
+
+  return res.json();
 }
