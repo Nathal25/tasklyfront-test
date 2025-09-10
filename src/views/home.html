@@ -1,17 +1,16 @@
 <div class="container">
-    <article class="card">
-        <h1>Registro</h1>
-        <form id="registerForm" class="form" autocomplete="off">
-            <div class="row">
-                <label for="username">Usuario</label>
-                <input id="username" name="username" type="text" required minlength="2" />
-            </div>
-            <div class="row">
-                <label for="password">Contraseña</label>
-                <input id="password" name="password" type="password" required minlength="6" />
-            </div>
-            <button type="submit" class="btn">Guardar</button>
-            <p id="registerMsg" style="min-height:1.25rem;margin:0.25rem 0 0"></p>
-        </form>
-    </article>
+  <div class="content-wrapper">
+    <div class="centered-column">
+      <div class="logo">LOGO</div>
+      <!-- Botones que cambian el hash y activan el router -->
+      <button id="go-register" class="btn main-btn" onclick="location.hash='#/register'">Registrarse</button>
+      <button class="btn main-btn" onclick="location.hash='#/board'">Ingresa aquí</button>
+    </div>
+  </div>
+  <div class="bottom-left">
+    <a href="#" class="bottom-link">Conoce más</a>
+  </div>
+  <div class="bottom-right">
+    <a href="#" class="bottom-link">Configuración</a>
+  </div>
 </div>

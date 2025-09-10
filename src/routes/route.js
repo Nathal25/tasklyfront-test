@@ -20,11 +20,10 @@ async function loadView(name) {
   if (!res.ok) throw new Error(`Failed to load view: ${name}`);
   const html = await res.text();
   app.innerHTML = html;
-  if (name === 'home') initHome();
   if (name === 'board') initBoard();
-  if (name === 'register') initRegister();
-
+  if (name === 'register') initRegister();  // <<< Asegurar que se llama aquí
 }
+
 
 /**
  * Initialize the hash-based router.
@@ -41,7 +40,7 @@ export function initRouter() {
  */
 function handleRoute() {
   const path = (location.hash.startsWith('#/') ? location.hash.slice(2) : '') || 'home';
-  const known = ['home', 'board', 'register'];
+  const known = ['board', 'register', 'home'];
   const route = known.includes(path) ? path : 'home';
 
   loadView(route).catch(err => {
@@ -51,45 +50,6 @@ function handleRoute() {
 }
 
 /* ---- View-specific logic ---- */
-
-/**
- * Initialize the "home" view.
- * Attaches a submit handler to the register form to navigate to the board.
- */
-function initHome() {
-  const form = document.getElementById('registerForm');
-  const userInput = document.getElementById('username');
-  const passInput = document.getElementById('password');
-  const msg = document.getElementById('registerMsg');
-
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    msg.textContent = '';
-
-    const username = userInput?.value.trim();
-    const password = passInput?.value.trim();
-
-    if (!username || !password) {
-      msg.textContent = 'Por favor completa usuario y contraseña.';
-      return;
-    }
-
-    form.querySelector('button[type="submit"]').disabled = true;
-
-    try {
-      const data = await registerUser({ username, password });
-      msg.textContent = 'Registro exitoso';
-
-      setTimeout(() => (location.hash = '#/board'), 400);
-    } catch (err) {
-      msg.textContent = `No se pudo registrar: ${err.message}`;
-    } finally {
-      form.querySelector('button[type="submit"]').disabled = false;
-    }
-  });
-}
 
 /**
  * Initialize the "board" view.
@@ -132,18 +92,34 @@ function initBoard() {
 function initRegister() {
     const form = document.getElementById('registerForm');
     const msg = document.getElementById('registerMsg');
+
+    // Listener del botón Volver (SPA, sin recargar)
+  const volverBtn = document.getElementById('volverBtn');
+  if (volverBtn) {
+    volverBtn.addEventListener('click', () => {
+      console.log('volverBtn click → navegando a #/home');
+      // cambiar hash para que el router cargue la vista home
+      location.hash = '#/home';
+    });
+  } else {
+    // Si no existe, imprimimos aviso para depuración
+    console.warn('initRegister: volverBtn no encontrado en el DOM');
+  }
+
     if (!form) return;
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         msg.textContent = '';
         const formData = new FormData(form);
         const data = {
-            firstName: formData.get('firstName').trim(),
-            lastName: formData.get('lastName').trim(),
-            age: Number(formData.get('age')),
-            email: formData.get('email').trim(),
-            password: formData.get('password').trim(),
+          firstName: formData.get('firstName').trim(),
+          lastName: formData.get('lastName').trim(),
+          age: Number(formData.get('age')),
+          email: formData.get('email').trim(),
+          password: formData.get('password').trim(),
+          confirmPassword: formData.get('confirmPassword').trim(), // agregar campo
         };
+
 
     // Validación básica (opcional)
     if (!data.firstName || !data.lastName || !data.age || !data.email || !data.password) {

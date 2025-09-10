@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de tareas</title>
+    <link rel="stylesheet" href="src/styles/index.css" />
   </head>
   <body>
-    <div id="app">
-      <!-- Botón para ir a registro -->
-      <button id="go-register">Ir a Registro</button>
-    </div>
-    <script type="module" src="/src/main.js"></script>
+    <!-- Aquí se cargarán dinámicamente las vistas -->
+    <div id="app"></div>
+
+    <!-- Inclusión del script principal que maneja el router -->
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>

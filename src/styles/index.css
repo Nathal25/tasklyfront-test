@@ -1,0 +1,84 @@
+/* contenedor principal */
+.container {
+  background: #ddd;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* contenedor central */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 100vw;
+  position: relative;
+}
+
+/* contenedor columna con centrado */
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* logo circular */
+.logo {
+  width: 150px;
+  height: 150px;
+  background: #aaa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 24px;
+}
+
+/* botones generales */
+.btn {
+  padding: 4px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* para evitar margen en el último botón */
+.btn:last-of-type {
+  margin-bottom: 0;
+}
+
+/* enlaces en la parte inferior izquierda y derecha */
+.bottom-left {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+}
+
+.bottom-right {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
+/* estilos para enlaces de la parte inferior */
+.bottom-link {
+  color: #222;
+  text-decoration: underline;
+  font-size: 1rem;
+}

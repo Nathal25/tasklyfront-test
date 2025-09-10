@@ -1,12 +1,4 @@
-:root{
-    --primary-color: #AD49E1;
-    --secondary-color: #7A1CAC;
-    --background-color: #2E073F;
-    --text-color: #EBD3F8;
-    --border-color: #faf2ff;
-    --font-family: 'Open Sans', sans-serif;
 
-}
 
 body {
     font-family: var(--font-family);
