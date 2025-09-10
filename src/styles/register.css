@@ -1,0 +1,138 @@
+  .reg-main {
+    display: flex;
+    min-height: 100vh;
+  }
+  .reg-logo {
+    flex: 1;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reg-logo-inner {
+    width: 180px;
+    height: 180px;
+    background: #d3d3d3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #111;
+  }
+  .reg-form-wrap {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .reg-form {
+    width: 80%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .reg-title {
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    font-size: 2rem;
+  }
+  .reg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+  .reg-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .reg-field label {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  .reg-field input {
+    border: none;
+    border-bottom: 1px solid #888;
+    background: transparent;
+    outline: none;
+    padding: 4px 2px;
+  }
+  .reg-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 16px;
+  }
+  .reg-btns button {
+    min-width: 120px;
+    background: #ccc;
+    color: #222;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 24px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .reg-btns .volver {
+    background: #ddd;
+    align-self: flex-start;
+    margin-bottom: 16px;
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: unset;
+    font-size: 1rem;
+    padding: 4px 16px;
+  }
+  @media (max-width: 700px) {
+    .reg-main {
+      flex-direction: column;
+    }
+    .reg-logo {
+      min-height: 220px;
+      justify-content: center;
+    }
+    .reg-form-wrap {
+      min-height: 400px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .reg-form {
+      width: 95%;
+      max-width: 100vw;
+      margin-top: 0;
+    }
+    .reg-btns .volver {
+      position: static;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+    .reg-title {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+    .reg-logo-inner {
+      width: 140px;
+      height: 140px;
+      font-size: 2rem;
+    }
+    .reg-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 12px;
+      margin-bottom: 24px;
+    }
+    .reg-btns {
+      margin-top: 8px;
+    }
+  }

@@ -1,24 +1,14 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './styles/base.css';
+import { initRouter } from './routes/route.js';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+/**
+ * Este archivo solo inicializa el router y el botón de navegación.
+ * El listener para el formulario de registro se añade dinámicamente
+ * dentro de la función initRegister() que se ejecuta cuando se carga la vista de registro.
+ */
 
-setupCounter(document.querySelector('#counter'))
+// Inicializa el router para manejar rutas y cargar vistas dinámicamente
+
+initRouter();
+
+

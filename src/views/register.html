@@ -1,0 +1,55 @@
+<style>
+  @import '../styles/register.css';
+</style>
+
+<div class="reg-main">
+  <div class="reg-logo">
+    <div class="reg-logo-inner">LOGO</div>
+  </div>
+  <div class="reg-form-wrap">
+    <form id="registerForm" method="post" autocomplete="off" class="reg-form">
+      <h2 class="reg-title">REGISTRO</h2>
+      <div class="reg-grid">
+        <!-- Campos del formulario -->
+        <div class="reg-field">
+          <label for="firstName">Nombre</label>
+          <input id="firstName" name="firstName" type="text" required minlength="2" />
+        </div>
+        <div class="reg-field">
+          <label for="lastName">Apellido</label>
+          <input id="lastName" name="lastName" type="text" required minlength="2" />
+        </div>
+        <div class="reg-field">
+          <label for="age">Edad</label>
+          <input id="age" name="age" type="number" required min="13" />
+        </div>
+        <div class="reg-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div class="reg-field">
+          <label for="password">Contraseña</label>
+          <input id="password" name="password" type="password" required minlength="8" />
+        </div>
+        <div class="reg-field">
+          <label for="confirmPassword">Validar contraseña</label>
+          <input id="confirmPassword" name="confirmPassword" type="password" required minlength="8" />
+        </div>
+      </div>
+      <div class="reg-btns">
+        <button type="submit" class="btn">Registrarse</button>
+        <p id="registerMsg" style="min-height:1.25rem;margin:0.25rem 0 0"></p>
+        <button type="button" id="volverBtn">Volver</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="module" src="/src/main.js"></script>
+<script>
+  document.getElementById('volverBtn').onclick = function() {
+    console.log("El botón volver fue presionado ✅");
+    location.hash = '#/';
+  };
+</script>
+
+
