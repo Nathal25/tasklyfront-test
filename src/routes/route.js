@@ -20,9 +20,10 @@ async function loadView(name) {
   if (!res.ok) throw new Error(`Failed to load view: ${name}`);
   const html = await res.text();
   app.innerHTML = html;
-
   if (name === 'home') initHome();
   if (name === 'board') initBoard();
+  if (name === 'register') initRegister();
+
 }
 
 /**
@@ -40,7 +41,7 @@ export function initRouter() {
  */
 function handleRoute() {
   const path = (location.hash.startsWith('#/') ? location.hash.slice(2) : '') || 'home';
-  const known = ['home', 'board'];
+  const known = ['home', 'board', 'register'];
   const route = known.includes(path) ? path : 'home';
 
   loadView(route).catch(err => {
@@ -125,5 +126,41 @@ function initBoard() {
     if (!li) return;
     if (e.target.matches('.remove')) li.remove();
     if (e.target.matches('.check')) li.classList.toggle('completed', e.target.checked);
+  });
+}
+
+function initRegister() {
+    const form = document.getElementById('registerForm');
+    const msg = document.getElementById('registerMsg');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.textContent = '';
+        const formData = new FormData(form);
+        const data = {
+            firstName: formData.get('firstName').trim(),
+            lastName: formData.get('lastName').trim(),
+            age: Number(formData.get('age')),
+            email: formData.get('email').trim(),
+            password: formData.get('password').trim(),
+        };
+
+    // Validación básica (opcional)
+    if (!data.firstName || !data.lastName || !data.age || !data.email || !data.password) {
+      msg.textContent = 'Por favor completa todos los campos.';
+      return;
+    }
+
+    form.querySelector('button[type="submit"]').disabled = true;
+
+    try {
+      await registerUser(data);
+      msg.textContent = 'Registro exitoso';
+      setTimeout(() => (location.hash = '#/board'), 400);
+    } catch (err) {
+      msg.textContent = `No se pudo registrar: ${err.message}`;
+    } finally {
+      form.querySelector('button[type="submit"]').disabled = false;
+    }
   });
 }
